@@ -1,10 +1,197 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đăng nhập quản trị - Én Việt Group</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#07385f,#0b82bd);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  font-family:Arial,sans-serif;
+}
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  padding:38px;
+  border-radius:18px;
+  box-shadow:0 15px 45px #002e5055;
+}
+h1{
+  text-align:center;
+  color:#08659e;
+  margin:0 0 10px;
+}
+.subtitle{
+  text-align:center;
+  color:#667d8e;
+  margin-bottom:30px;
+}
+label{
+  display:block;
+  font-weight:bold;
+  margin:17px 0 8px;
+  color:#23465f;
+}
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccdce5;
+  border-radius:9px;
+  font-size:15px;
+}
+input:focus{
+  outline:2px solid #8dc8ec;
+}
+button{
+  width:100%;
+  background:#08659e;
+  color:#fff;
+  border:0;
+  border-radius:9px;
+  padding:15px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:25px;
+}
+button:disabled{
+  opacity:.6;
+  cursor:wait;
+}
+#message{
+  text-align:center;
+  margin-top:18px;
+  min-height:20px;
+  color:#bc2936;
+  line-height:1.5;
+}
+.footer{
+  margin-top:25px;
+  text-align:center;
+  color:#8495a0;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<main class="login-box">
+  <h1>ÉN VIỆT GROUP</h1>
+  <div class="subtitle">
+    CỔNG THANH TOÁN TRỰC TUYẾN<br>
+    Đăng nhập quản trị
+  </div>
+
+  <form id="loginForm">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Nhập email của bạn"
+      autocomplete="username"
+      required
+    >
+
+    <label for="password">Mật khẩu</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Nhập mật khẩu"
+      autocomplete="current-password"
+      required
+    >
+
+    <button id="loginBtn" type="submit">
+      ĐĂNG NHẬP
+    </button>
+  </form>
+
+  <p id="message" role="status"></p>
+
+  <div class="footer">
+    © 2026 ÉN VIỆT GROUP<br>
+    Hệ thống dành cho nhân viên được cấp quyền
+  </div>
+</main>
+
+<script type="module">
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+// Cấu hình Firebase của Én Việt Group
 const firebaseConfig = {
-  apiKey: "AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o",
-  authDomain: "enviet-payment-center.firebaseapp.com",
-  projectId: "enviet-payment-center",
-  storageBucket: "enviet-payment-center.firebasestorage.app",
-  messagingSenderId: "995803196860",
-  appId: "1:995803196860:web:623863bdf426b079ac0fb9",
-  measurementId: "G-2DVDS6V976"
+  apiKey:"AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o",
+  authDomain:"enviet-payment-center.firebaseapp.com",
+  projectId:"enviet-payment-center",
+  storageBucket:"enviet-payment-center.firebasestorage.app",
+  messagingSenderId:"995803196860",
+  appId:"1:995803196860:web:623863bdf426b079ac0fb9",
+  measurementId:"G-2DVDS6V976"
 };
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+
+const form=document.getElementById("loginForm");
+const button=document.getElementById("loginBtn");
+const message=document.getElementById("message");
+
+form.addEventListener("submit",async(event)=>{
+  event.preventDefault();
+
+  button.disabled=true;
+  message.style.color="#08659e";
+  message.textContent="Đang xác thực tài khoản...";
+
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value;
+
+  try{
+    await signInWithEmailAndPassword(
+      auth,email,password
+    );
+
+    message.style.color="#087342";
+    message.textContent="Đăng nhập thành công!";
+
+    // Chưa mở trang quản trị cho đến khi
+    // thiết lập kiểm tra quyền nhân viên.
+
+  }catch(error){
+    message.style.color="#bc2936";
+
+    if(error.code==="auth/unauthorized-domain"){
+      message.textContent=
+      "Tên miền chưa được cho phép trong Firebase.";
+    }else if(error.code==="auth/invalid-api-key"){
+      message.textContent=
+      "Cấu hình Firebase chưa chính xác.";
+    }else{
+      message.textContent=
+      "Không đăng nhập được. Kiểm tra email, mật khẩu hoặc tài khoản Firebase.";
+    }
+  }finally{
+    button.disabled=false;
+    document.getElementById("password").value="";
+  }
+});
+</script>
+
+</body>
+</html>
