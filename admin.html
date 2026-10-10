@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quản trị | Én Việt Group</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#eef4f9;
+ color:#173f65;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#07549a;
+ color:white;
+ padding:22px 5%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+}
+.brand{
+ font-size:24px;
+ font-weight:800;
+}
+.brand span{color:#ff9c24}
+header small{display:block;margin-top:6px}
+button{
+ border:0;
+ border-radius:9px;
+ padding:12px 18px;
+ cursor:pointer;
+ font-weight:bold;
+}
+.logout{background:white;color:#07549a}
+main{
+ max-width:1150px;
+ margin:30px auto;
+ padding:0 18px;
+}
+.card{
+ background:white;
+ border-radius:15px;
+ padding:25px;
+ margin-bottom:20px;
+ box-shadow:0 6px 25px #07385a13;
+}
+h2{margin-top:0;color:#07549a}
+p{line-height:1.7}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:17px;
+}
+.item{
+ border:1px solid #dbe6ef;
+ border-radius:12px;
+ padding:22px;
+}
+.item h3{margin-top:0}
+.orange{
+ background:linear-gradient(90deg,#ff9812,#fa6204);
+ color:white;
+}
+.blue{background:#08659e;color:white}
+.disabled{opacity:.55;cursor:not-allowed}
+#status{color:#07549a}
+#app{display:none}
+footer{
+ text-align:center;
+ padding:24px;
+ font-size:12px;
+ color:#74899a;
+}
+@media(max-width:750px){
+ .grid{grid-template-columns:1fr}
+ header{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div id="loading" style="padding:50px;text-align:center">
+ <h2>ÉN VIỆT GROUP</h2>
+ <p id="status">Đang kiểm tra quyền truy cập...</p>
+</div>
+
+<div id="app">
+<header>
+ <div>
+  <div class="brand">ÉN VIỆT <span>GROUP</span></div>
+  <small>HỆ THỐNG QUẢN TRỊ THANH TOÁN</small>
+ </div>
+ <button class="logout" id="logout">Đăng xuất</button>
+</header>
+
+<main>
+ <section class="card">
+  <h2>Xin chào, Quản trị viên!</h2>
+  <p>Đăng nhập bằng: <strong id="email">—</strong></p>
+  <p>Trạng thái: Đã xác thực và được cấp quyền quản trị</p>
+ </section>
+
+ <div class="grid">
+
+  <section class="item">
+   <h3>Quản lý phiếu thanh toán</h3>
+   <p>Xem và quản lý phiếu thanh toán khách hàng.</p>
+   <button class="orange disabled" disabled>
+    Chưa tích hợp
+   </button>
+  </section>
+
+  <section class="item">
+   <h3>Tạo hóa đơn</h3>
+   <p>Khu vực này sẽ kết nối với mẫu hóa đơn do bạn tự thiết kế.</p>
+   <button class="blue disabled" disabled>
+    Chờ mẫu hóa đơn
+   </button>
+  </section>
+
+  <section class="item">
+   <h3>Ngân hàng & VietQR</h3>
+   <p>Cấu hình tài khoản nhận thanh toán sau khi có hệ thống lưu dữ liệu an toàn.</p>
+   <button class="blue disabled" disabled>
+    Chưa tích hợp
+   </button>
+  </section>
+
+ </div>
+</main>
+
+<footer>© 2026 ÉN VIỆT GROUP</footer>
+</div>
+
+<script type="module">
+
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+ getAuth,
+ onAuthStateChanged,
+ signOut
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o",
+ authDomain:"enviet-payment-center.firebaseapp.com",
+ projectId:"enviet-payment-center",
+ storageBucket:"enviet-payment-center.firebasestorage.app",
+ messagingSenderId:"995803196860",
+ appId:"1:995803196860:web:623863bdf426b079ac0fb9",
+ measurementId:"G-2DVDS6V976"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+
+// THAY UID_BANG_UID_CUA_BAN BẰNG UID QUẢN TRỊ
+const ADMIN_UIDS=[
+ "UID_BANG_UID_CUA_BAN"
+];
+
+const $=id=>document.getElementById(id);
+
+const loginUrl="./login.html";
+
+onAuthStateChanged(auth,async user=>{
+ if(!user){
+  location.replace(loginUrl);
+  return;
+ }
+
+ if(!ADMIN_UIDS.includes(user.uid)){
+  $("status").textContent=
+   "Tài khoản chưa được cấp quyền quản trị.";
+
+  try{
+   await signOut(auth);
+  }catch(error){
+   console.error("Không đăng xuất được",error);
+  }
+
+  return;
+ }
+
+ $("email").textContent=user.email||"—";
+ $("loading").style.display="none";
+ $("app").style.display="block";
+},error=>{
+ $("status").textContent=
+  "Không kiểm tra được đăng nhập: "+error.message;
+});
+
+$("logout").addEventListener("click",async()=>{
+ try{
+  await signOut(auth);
+  location.replace(loginUrl);
+ }catch(error){
+  alert("Không đăng xuất được. Vui lòng thử lại.");
+ }
+});
+
+</script>
+</body>
+</html>
