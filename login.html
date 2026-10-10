@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập | Én Việt Group</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#073d68,#087db9);
+ font-family:Arial,sans-serif;
+ padding:20px;
+}
+.login{
+ width:100%;
+ max-width:420px;
+ background:white;
+ padding:35px;
+ border-radius:17px;
+ box-shadow:0 15px 45px #002a4b55;
+}
+h1{
+ color:#08659e;
+ text-align:center;
+ margin:0 0 8px;
+}
+.subtitle{
+ text-align:center;
+ color:#607b8b;
+ margin-bottom:28px;
+}
+label{
+ display:block;
+ margin:15px 0 7px;
+ font-weight:bold;
+ color:#254a60;
+}
+input{
+ width:100%;
+ padding:14px;
+ border:1px solid #cbdbe5;
+ border-radius:9px;
+ font-size:15px;
+}
+button{
+ width:100%;
+ padding:15px;
+ margin-top:24px;
+ background:#08659e;
+ color:white;
+ border:0;
+ border-radius:9px;
+ font-weight:bold;
+ font-size:16px;
+ cursor:pointer;
+}
+button:disabled{opacity:.6;cursor:wait}
+#message{
+ margin-top:18px;
+ text-align:center;
+ color:#c12535;
+}
+.footer{
+ text-align:center;
+ font-size:12px;
+ color:#80909b;
+ margin-top:25px;
+}
+</style>
+</head>
+<body>
+<div class="login">
+ <h1>ÉN VIỆT GROUP</h1>
+ <div class="subtitle">
+  ĐĂNG NHẬP HỆ THỐNG QUẢN TRỊ
+ </div>
+
+ <form id="loginForm">
+  <label for="email">Địa chỉ Email</label>
+  <input id="email" type="email"
+   placeholder="Nhập Email" required>
+
+  <label for="password">Mật khẩu</label>
+  <input id="password" type="password"
+   placeholder="Nhập mật khẩu" required>
+
+  <button id="loginButton" type="submit">
+   ĐĂNG NHẬP
+  </button>
+ </form>
+
+ <p id="message" role="status"></p>
+
+ <div class="footer">
+  © 2026 Én Việt Group<br>
+  Hệ thống dành cho nhân viên được cấp quyền
+ </div>
+</div>
+
+<script type="module">
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+ getAuth,
+ signInWithEmailAndPassword
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+// THAY BẰNG CẤU HÌNH FIREBASE CỦA BẠN
+const firebaseConfig = {
+ apiKey: "DIEN_API_KEY",
+ authDomain: "DIEN_AUTH_DOMAIN",
+ projectId: "viensit-payment-center",
+ appId: "DIEN_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
+const button = document.getElementById("loginButton");
+
+form.addEventListener("submit",async(event)=>{
+ event.preventDefault();
+ button.disabled=true;
+ message.textContent="Đang kiểm tra đăng nhập...";
+
+ try{
+  const email=document.getElementById("email").value;
+  const password=document.getElementById("password").value;
+
+  await signInWithEmailAndPassword(auth,email,password);
+
+  message.style.color="green";
+  message.textContent="Đăng nhập thành công!";
+  // Chưa chuyển trang cho tới khi thiết lập
+  // và kiểm tra quyền quản trị.
+ }catch(error){
+  message.style.color="#c12535";
+  message.textContent=
+   "Đăng nhập thất bại. Kiểm tra Email hoặc mật khẩu.";
+ }finally{
+  button.disabled=false;
+ }
+});
+</script>
+</body>
+</html>
