@@ -4,220 +4,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Đăng nhập quản trị | Én Việt Group</title>
+<title>Đăng nhập | Én Việt Group</title>
 <style>
 *{box-sizing:border-box}
-html,body{min-height:100%;margin:0}
+:root{
+ --blue:#07549a;
+ --navy:#072e62;
+ --orange:#ff850b;
+}
+html,body{margin:0;min-height:100%}
 body{
  font-family:Arial,Helvetica,sans-serif;
- background:#07538f url('./nen_dang_nhap_enviet.jpg')
- center center / cover no-repeat fixed;
- color:#123b69;
- display:grid;
- place-items:center;
- padding:24px;
+ color:var(--navy);
 }
-.login-box{
- width:min(100%,440px);
- padding:34px 40px 39px;
- background:#fffffffa;
- border-radius:16px;
- box-shadow:0 20px 56px #002e5680;
+.page{
+ position:relative;
+ min-height:100vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ background:
+ linear-gradient(90deg,
+ rgba(0,47,100,.12),
+ rgba(0,54,112,.02)),
+ url("./nen_sanbay_enviet_moi.jpg")
+ center/cover no-repeat;
+ overflow:hidden;
+ padding:35px 5%;
+}
+.page:after{
+ content:"";
+ position:absolute;
+ left:-5%;
+ right:-5%;
+ bottom:-110px;
+ height:205px;
+ border-top:12px solid var(--orange);
+ border-radius:50% 50% 0 0;
+ background:linear-gradient(
+  135deg,#05316b,#0059a3);
+ z-index:0;
+}
+.brand-left{
+ position:absolute;
+ top:8%;
+ left:6%;
+ color:white;
+ z-index:1;
+ text-shadow:0 2px 12px #00315a88;
+}
+.brand-left h2{
+ font-size:29px;
+ margin:0 0 12px;
+ letter-spacing:2px;
+}
+.brand-left span{color:var(--orange)}
+.brand-left p{
+ margin:0;
+ letter-spacing:2px;
+ font-size:13px;
+ line-height:1.8;
+}
+.layout{
+ position:relative;
+ z-index:2;
+ display:flex;
+ justify-content:flex-end;
+ width:100%;
+ max-width:1350px;
+ margin:auto;
+}
+.panel{
+ width:min(100%,535px);
+ background:rgba(255,255,255,.97);
+ border-radius:20px;
+ padding:40px 43px;
+ box-shadow:0 18px 65px #00285a55;
  text-align:center;
+ border:1px solid #ffffffbb;
 }
 .bird{
- width:98px;
- height:75px;
- margin:0 auto 4px;
  display:block;
+ width:120px;
+ height:95px;
+ margin:0 auto 8px;
 }
 h1{
  margin:0;
- color:#0754a0;
- font-size:31px;
- line-height:1.2;
- letter-spacing:.3px;
+ font-size:34px;
+ color:var(--blue);
+ letter-spacing:.5px;
 }
-h1 span{color:#ee820c;font-weight:400}
+h1 span{color:var(--orange)}
 .subtitle{
- font-size:12px;
- letter-spacing:2.3px;
- color:#325c85;
- margin:10px 0 18px;
+ font-size:13px;
+ letter-spacing:3px;
+ margin:14px 0 26px;
+ color:#163f72;
+ font-weight:600;
 }
-.rule{
- height:2px;
- background:#f79420;
- width:54px;
- margin:0 auto 28px;
+.line{
+ height:3px;
+ width:95px;
+ background:var(--orange);
+ margin:0 auto 30px;
 }
-h2{
- font-size:21px;
- color:#092d63;
- margin:0 0 24px;
+h3{
+ font-size:25px;
+ margin:0 0 25px;
 }
-input{
+.field{
+ width:100%;
  display:block;
- width:100%;
- height:53px;
- border:1px solid #cddbe9;
- border-radius:9px;
- margin:0 0 15px;
- padding:0 16px;
- font-size:15px;
+ padding:17px 18px;
+ margin-bottom:15px;
+ border:1px solid #cbd6e3;
  background:#fff;
-}
-input:focus{
- outline:2px solid #8ec7ed;
- outline-offset:1px;
-}
-button{
- width:100%;
- border:0;
- background:linear-gradient(90deg,#08479e,#0874d8);
- color:white;
- font-size:16px;
- font-weight:700;
- padding:17px;
- cursor:pointer;
  border-radius:9px;
- margin-top:5px;
+ font-size:16px;
+ color:#143d69;
 }
-button:disabled{opacity:.7;cursor:wait}
+.field:focus{
+ outline:2px solid #8bc4ef;
+}
+.password-wrap{position:relative}
+.password-wrap input{
+ padding-right:65px;
+}
+.show-password{
+ position:absolute;
+ right:8px;
+ top:7px;
+ border:none;
+ background:transparent;
+ color:#527399;
+ padding:10px;
+ cursor:pointer;
+ font-size:13px;
+}
+.login-btn{
+ width:100%;
+ margin-top:2px;
+ padding:19px 16px;
+ background:linear-gradient(
+  90deg,#ff920d,#f45204);
+ border:none;
+ border-radius:9px;
+ color:#fff;
+ font-weight:bold;
+ font-size:19px;
+ cursor:pointer;
+}
+.login-btn:hover{filter:brightness(1.05)}
+.login-btn:disabled{
+ opacity:.65;
+ cursor:wait;
+}
 #message{
+ min-height:22px;
+ margin-top:18px;
  font-size:14px;
- min-height:19px;
- margin:18px 0 0;
  line-height:1.5;
 }
-.note{
- font-size:11px;
- color:#697e91;
- margin-top:16px;
+.security{
+ font-size:13px;
+ color:#62758b;
+ padding-top:14px;
+ border-top:1px solid #dce3eb;
 }
-@media(max-width:580px){
- body{padding:18px;background-position:60% center}
- .login-box{padding:26px 22px}
- h1{font-size:26px}
+.footer{
+ position:relative;
+ z-index:2;
+ display:flex;
+ align-items:center;
+ gap:30px;
+ color:white;
+ margin-top:25px;
+ padding-bottom:5px;
+ font-size:13px;
+}
+.footer span{white-space:nowrap}
+.footer span+span{
+ border-left:1px solid #ffffff88;
+ padding-left:30px;
+}
+@media(max-width:850px){
+ .page{
+  padding:25px 15px 60px;
+  background-position:35% center;
+ }
+ .brand-left{display:none}
+ .layout{justify-content:center}
+ .panel{max-width:460px;padding:30px 23px}
+ .footer{
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:11px;
+ }
+ .footer span+span{
+  border:0;
+  padding:0;
+ }
+ h1{font-size:28px}
+ h3{font-size:22px}
+ .subtitle{font-size:11px}
 }
 </style>
 </head>
-
 <body>
-<main class="login-box">
 
- <svg class="bird" viewBox="0 0 120 90"
- role="img" aria-label="Biểu tượng cánh én cách điệu">
-  <path fill="#f68b16"
-  d="M7 11 Q40 32 73 44 Q49 46 30 32 Q47 53 73 54 Q48 60 30 49 Q48 69 77 64 Q43 77 25 59 Q53 87 84 65"/>
-  <path fill="#0666b8"
-  d="M73 44 Q93 30 108 43 Q113 48 116 45 Q112 55 103 54 Q92 83 46 83 Q79 70 73 44Z"/>
- </svg>
+<div class="page">
 
- <h1>ÉN VIỆT <span>GROUP</span></h1>
-
- <div class="subtitle">
- CỔNG THANH TOÁN TRỰC TUYẾN
+ <div class="brand-left">
+  <h2>ÉN VIỆT <span>GROUP</span></h2>
+  <p>KẾT NỐI BẦU TRỜI VIỆT</p>
+  <p>VƯƠN TỚI THẾ GIỚI</p>
  </div>
 
- <div class="rule"></div>
+ <div class="layout">
+  <main class="panel">
 
- <h2>Đăng nhập quản trị</h2>
+   <svg class="bird" viewBox="0 0 120 90"
+    role="img" aria-label="Biểu tượng cánh én">
+    <path fill="#ff8608"
+     d="M7 11 Q40 32 73 44
+     Q49 46 30 32
+     Q47 53 73 54
+     Q48 60 30 49
+     Q48 69 77 64
+     Q43 77 25 59
+     Q53 87 84 65"/>
+    <path fill="#0666b8"
+     d="M73 44 Q93 30 108 43
+     Q113 48 116 45
+     Q112 55 103 54
+     Q92 83 46 83
+     Q79 70 73 44Z"/>
+   </svg>
 
- <form id="loginForm">
-  <input
-   id="email"
-   type="email"
-   placeholder="Email"
-   aria-label="Email"
-   autocomplete="username"
-   required
-  >
+   <h1>ÉN VIỆT <span>GROUP</span></h1>
 
-  <input
-   id="password"
-   type="password"
-   placeholder="Mật khẩu"
-   aria-label="Mật khẩu"
-   autocomplete="current-password"
-   required
-  >
+   <p class="subtitle">
+    CỔNG THANH TOÁN TRỰC TUYẾN
+   </p>
 
-  <button id="loginBtn" type="submit">
-   ĐĂNG NHẬP →
-  </button>
- </form>
+   <div class="line"></div>
 
- <p id="message" role="status"></p>
+   <h3>Đăng nhập quản trị</h3>
 
- <div class="note">
- © 2026 Én Việt Group · Dành cho nhân viên được cấp quyền
+   <form id="loginForm">
+
+    <input class="field"
+     id="email"
+     type="email"
+     placeholder="Email"
+     aria-label="Email"
+     autocomplete="username"
+     required>
+
+    <div class="password-wrap">
+     <input class="field"
+      id="password"
+      type="password"
+      placeholder="Mật khẩu"
+      aria-label="Mật khẩu"
+      autocomplete="current-password"
+      required>
+
+     <button class="show-password"
+      type="button"
+      id="showPassword">
+      Hiện
+     </button>
+    </div>
+
+    <button class="login-btn"
+     id="loginBtn" type="submit">
+     ĐĂNG NHẬP →
+    </button>
+
+   </form>
+
+   <p id="message" role="status"></p>
+
+   <div class="security">
+    Chỉ dành cho nhân viên được cấp quyền
+   </div>
+
+  </main>
  </div>
 
-</main>
+ <div class="footer">
+  <span>♢ AN TOÀN BẢO MẬT</span>
+  <span>✈ ÉN VIỆT GROUP</span>
+  <span>© 2026 ÉN VIỆT GROUP</span>
+ </div>
+
+</div>
 
 <script type="module">
-
-import {initializeApp} from
-'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
 import {
  getAuth,
  signInWithEmailAndPassword
 } from
-'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-const firebaseConfig={
- apiKey:'AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o',
- authDomain:'enviet-payment-center.firebaseapp.com',
- projectId:'enviet-payment-center',
- storageBucket:'enviet-payment-center.firebasestorage.app',
- messagingSenderId:'995803196860',
- appId:'1:995803196860:web:623863bdf426b079ac0fb9',
- measurementId:'G-2DVDS6V976'
+const firebaseConfig = {
+ apiKey:"AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o",
+ authDomain:"enviet-payment-center.firebaseapp.com",
+ projectId:"enviet-payment-center",
+ storageBucket:"enviet-payment-center.firebasestorage.app",
+ messagingSenderId:"995803196860",
+ appId:"1:995803196860:web:623863bdf426b079ac0fb9",
+ measurementId:"G-2DVDS6V976"
 };
 
-const auth=getAuth(initializeApp(firebaseConfig));
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
 
-const form=document.getElementById('loginForm');
-const btn=document.getElementById('loginBtn');
-const msg=document.getElementById('message');
+const $=id=>document.getElementById(id);
 
-form.addEventListener('submit',async e=>{
- e.preventDefault();
-
- btn.disabled=true;
- msg.style.color='#175b94';
- msg.textContent='Đang xác thực...';
-
- try{
-  await signInWithEmailAndPassword(
-   auth,
-   document.getElementById('email').value.trim(),
-   document.getElementById('password').value
-  );
-
-  msg.style.color='#15803d';
-  msg.textContent='Đăng nhập thành công!';
-
-  // Chỉ chuyển đến trang quản trị
-  // sau khi thiết lập phân quyền an toàn.
-
- }catch(err){
-
-  msg.style.color='#ba2637';
-
-  msg.textContent=
-   err.code==='auth/unauthorized-domain'
-   ? 'Tên miền chưa được cấp quyền trong Firebase.'
-   : 'Đăng nhập thất bại. Kiểm tra email, mật khẩu và cấu hình Firebase.';
-
- }finally{
-  btn.disabled=false;
-  document.getElementById('password').value='';
- }
-
+$("showPassword").addEventListener("click",()=>{
+ const p=$("password");
+ const show=p.type==="password";
+ p.type=show?"text":"password";
+ $("showPassword").textContent=show?"Ẩn":"Hiện";
 });
+
+$("loginForm").addEventListener(
+ "submit",async e=>{
+  e.preventDefault();
+
+  const btn=$("loginBtn");
+  const msg=$("message");
+
+  btn.disabled=true;
+  msg.style.color="#07549a";
+  msg.textContent="Đang xác thực tài khoản...";
+
+  try{
+   await signInWithEmailAndPassword(
+    auth,
+    $("email").value.trim(),
+    $("password").value
+   );
+
+   msg.style.color="#15803d";
+   msg.textContent="Đăng nhập thành công!";
+
+   // Trang quản trị sẽ được kết nối
+   // sau khi thiết lập phân quyền.
+
+  }catch(error){
+
+   msg.style.color="#c52c3a";
+
+   if(error.code==="auth/unauthorized-domain"){
+    msg.textContent=
+     "Tên miền chưa được cho phép trong Firebase.";
+   }else{
+    msg.textContent=
+     "Đăng nhập thất bại. Kiểm tra email và mật khẩu.";
+   }
+
+  }finally{
+   btn.disabled=false;
+   $("password").value="";
+  }
+ }
+);
 </script>
 
 </body>
