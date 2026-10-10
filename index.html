@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Én Việt Group - Thanh toán vé máy bay</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef4f8;font-family:Arial,sans-serif;color:#193c51}
+header{background:#08659e;color:#fff;padding:22px;text-align:center}
+header h1{margin:0;font-size:27px}
+header p{margin:9px 0 0}
+main{max-width:1000px;margin:26px auto;padding:0 15px}
+.card{background:#fff;border-radius:14px;padding:25px;box-shadow:0 6px 25px #153e5a15;margin-bottom:20px}
+h2{color:#075d94;font-size:20px;margin-top:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{background:#f4f8fb;padding:13px;border-radius:8px}
+.field small{display:block;color:#637889;margin-bottom:7px}
+.field strong{word-break:break-word}
+.payment{display:grid;grid-template-columns:1fr 230px;gap:24px}
+.amount{font-size:27px;color:#d32128;font-weight:bold}
+.qrbox{background:#f6f9fb;border:1px solid #dbe6ed;border-radius:12px;padding:15px;text-align:center}
+.qrbox img{width:100%;max-width:200px}
+button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;background:#08659e;color:white;font-weight:bold;margin:5px 5px 5px 0}
+button:hover{background:#064d79}
+button:disabled{background:#adb9c2;cursor:not-allowed}
+.red{background:#c62032}
+.notice{background:#fff7e9;border:1px solid #f0ddba;padding:13px;border-radius:9px;line-height:1.6}
+footer{text-align:center;color:#687b89;padding:25px;font-size:13px}
+#message{color:#087341;min-height:20px}
+@media(max-width:650px){
+.grid,.payment{grid-template-columns:1fr}
+.card{padding:18px}
+header h1{font-size:23px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>ÉN VIỆT GROUP</h1>
+<p>PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p>
+</header>
+
+<main>
+<section class="card">
+<h2>Thông tin đặt vé</h2>
+<div class="grid">
+<div class="field"><small>Mã hóa đơn</small><strong id="invoice">—</strong></div>
+<div class="field"><small>Mã đặt chỗ (PNR)</small><strong id="pnr">—</strong></div>
+<div class="field"><small>Khách hàng</small><strong id="customer">—</strong></div>
+<div class="field"><small>Hãng hàng không</small><strong id="airline">—</strong></div>
+<div class="field"><small>Hành trình</small><strong id="route">—</strong></div>
+<div class="field"><small>Ngày bay</small><strong id="date">—</strong></div>
+</div>
+</section>
+
+<section class="card">
+<h2>Phương thức thanh toán</h2>
+<p>Chuyển khoản ngân hàng bằng VietQR</p>
+<div class="payment">
+<div>
+<p>Tên tài khoản:</p>
+<strong id="owner">—</strong>
+<p>Ngân hàng nhận:</p>
+<strong id="bank">—</strong>
+<p>Số tài khoản:</p>
+<strong id="account">—</strong>
+<p>Số tiền thanh toán:</p>
+<div class="amount" id="amount">—</div>
+<p>Nội dung chuyển khoản:</p>
+<strong id="content">—</strong>
+<p>
+<button id="copyAccount">Copy số tài khoản</button>
+<button id="copyContent">Copy nội dung</button>
+</p>
+<button class="red" id="copyAll">Sao chép thông tin thanh toán</button>
+</div>
+<div class="qrbox">
+<h3>QUÉT MÃ VIETQR</h3>
+<img id="qr" alt="Mã VietQR" hidden>
+<p id="qrStatus">Chưa cấu hình tài khoản nhận tiền</p>
+</div>
+</div>
+<p id="message" role="status"></p>
+<div class="notice">
+<strong>Lưu ý:</strong> Vui lòng kiểm tra tên người thụ hưởng và số tiền trên ứng dụng ngân hàng trước khi chuyển khoản.
+VietQR chỉ điền thông tin giao dịch, không tự xác nhận thanh toán thành công.
+</div>
+</section>
+</main>
+
+<footer>
+© 2026 ÉN VIỆT GROUP<br>
+Phiếu yêu cầu thanh toán - Không phải hóa đơn VAT hoặc xác nhận thanh toán của ngân hàng.
+</footer>
+
+<script>
+// THÔNG TIN MẪU - CHỈNH SỬA TẠI ĐÂY
+const data = {
+ invoice:"DEMO-001",
+ pnr:"Chưa có mã đặt chỗ",
+ customer:"Khách hàng mẫu",
+ airline:"Chưa xác định",
+ route:"Hà Nội - TP. Hồ Chí Minh",
+ date:"Chưa xác định",
+ owner:"",
+ bank:"",
+ bankCode:"",
+ account:"",
+ amount:0,
+ content:""
+};
+
+// Hiển thị thông tin
+const $ = id => document.getElementById(id);
+const money = n => new Intl.NumberFormat("vi-VN").format(n)+" VND";
+["invoice","pnr","customer","airline","route","date",
+"owner","bank","account","content"].forEach(k=>{
+ $(k).textContent=data[k]||"—";
+});
+$("amount").textContent=data.amount>0?money(data.amount):"—";
+
+const ready = Boolean(
+ data.owner && data.bank && data.bankCode &&
+ /^\d{6,19}$/.test(data.account) &&
+ Number.isSafeInteger(data.amount) && data.amount>0 &&
+ data.content
+);
+
+if(ready){
+ const query=new URLSearchParams({
+  amount:String(data.amount),
+  addInfo:data.content,
+  accountName:data.owner
+ });
+ const url="https://img.vietqr.io/image/"+
+ encodeURIComponent(data.bankCode)+"-"+
+ encodeURIComponent(data.account)+"-compact2.png?"+
+ query.toString();
+ $("qr").src=url;
+ $("qr").hidden=false;
+ $("qrStatus").textContent="Kiểm tra người thụ hưởng trước khi chuyển";
+ $("qr").onerror=()=>{
+  $("qr").hidden=true;
+  $("qrStatus").textContent="Không tải được mã QR. Kiểm tra cấu hình ngân hàng.";
+ };
+}else{
+ $("qrStatus").textContent="Chưa thiết lập thông tin thanh toán hợp lệ";
+}
+
+async function copyText(value){
+ if(!ready){
+  $("message").textContent="Chưa cấu hình thông tin thanh toán.";
+  return;
+ }
+ try{
+  await navigator.clipboard.writeText(value);
+  $("message").textContent="Đã sao chép thành công!";
+ }catch(e){
+  window.prompt("Sao chép nội dung:",value);
+ }
+}
+
+$("copyAccount").onclick=()=>copyText(data.account);
+$("copyContent").onclick=()=>copyText(data.content);
+$("copyAll").onclick=()=>copyText(
+ "Ngân hàng: "+data.bank+"\n"+
+ "Tên tài khoản: "+data.owner+"\n"+
+ "Số tài khoản: "+data.account+"\n"+
+ "Số tiền: "+money(data.amount)+"\n"+
+ "Nội dung: "+data.content
+);
+</script>
+</body>
+</html>
