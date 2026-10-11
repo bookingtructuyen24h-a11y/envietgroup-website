@@ -3,329 +3,295 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Én Việt Group - Phiếu yêu cầu thanh toán</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Én Việt Group - Phiếu thanh toán</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f3f5f7;
+  font:14px Arial,sans-serif;
+  color:#183557;
 }
 
-body {
-  margin: 0;
-  background: #f3f5f7;
-  font: 14px Arial, sans-serif;
-  color: #183557;
-}
-
-.page {
-  width: min(100% - 24px, 460px);
-  margin: 30px auto;
-  padding: 24px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px #10315b16;
+.page{
+  width:min(100% - 24px,460px);
+  margin:30px auto;
+  padding:24px 20px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 5px 20px #10315b16;
 }
 
 /* PHÂN KHÚC 1 */
 
-h1 {
-  text-align: center;
-  font-size: 18px;
-  color: #1167cb;
-  font-weight: 700;
-  margin: 10px 0 4px;
+h1{
+  text-align:center;
+  font-size:18px;
+  color:#1167cb;
+  font-weight:700;
+  margin:10px 0 5px;
 }
 
-.brand {
-  text-align: center;
-  font-size: 21px;
-  font-weight: 800;
-  color: #0b579f;
-  margin: 0 0 28px;
+.brand{
+  text-align:center;
+  font-size:21px;
+  font-weight:800;
+  color:#0b579f;
+  margin:0 0 28px;
 }
 
-.brand b {
-  color: #dc3945;
+.brand b{color:#dc3945}
+
+.methods{
+  display:grid;
+  gap:9px;
 }
 
-.methods {
-  display: grid;
-  gap: 9px;
+.option{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid #ddd;
+  background:#fafafa;
+  border-radius:6px;
+  padding:12px 10px;
+  cursor:pointer;
+  font-size:12px;
 }
 
-.option {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid #ddd;
-  background: #fafafa;
-  border-radius: 6px;
-  padding: 12px 10px;
-  cursor: pointer;
-  font-size: 12px;
+.option input{
+  accent-color:#1674e5;
 }
 
-.option input {
-  accent-color: #1674e5;
-}
-
-.option:has(input:checked) {
-  border-color: #80b9f7;
-  background: #f2f8ff;
+.option:has(input:checked){
+  border-color:#80b9f7;
+  background:#f2f8ff;
 }
 
 /* PHÂN KHÚC 2 */
 
-.transfer {
-  margin-top: 12px;
-  border: 1px solid #cfdce8;
-  border-radius: 8px;
-  padding: 14px 12px;
+.transfer{
+  margin-top:12px;
+  border:1px solid #cfdce8;
+  border-radius:8px;
+  padding:14px 12px;
 }
 
-.transfer-heading {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-weight: 700;
-  color: #135fae;
+.transfer-heading{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  font-weight:700;
+  color:#135fae;
 }
 
-.transfer-heading small {
-  font-size: 10px;
-  font-weight: 400;
-  color: #687a90;
+.transfer-heading small{
+  font-size:10px;
+  font-weight:400;
+  color:#687a90;
 }
 
-.warning {
-  font-size: 11px;
-  color: #66798e;
-  line-height: 1.5;
-  margin: 10px 0;
+.warning{
+  font-size:11px;
+  color:#66798e;
+  line-height:1.5;
+  margin:10px 0;
 }
 
-.details {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 130px;
-  gap: 10px;
-  align-items: center;
+.details{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 130px;
+  gap:10px;
+  align-items:center;
 }
 
-.lines {
-  min-width: 0;
+.lines{min-width:0}
+
+.line{
+  display:grid;
+  grid-template-columns:90px minmax(0,1fr);
+  gap:4px;
+  font-size:12px;
+  line-height:1.55;
+  margin:5px 0;
 }
 
-.line {
-  display: grid;
-  grid-template-columns: 90px minmax(0, 1fr);
-  gap: 4px;
-  font-size: 12px;
-  line-height: 1.55;
-  margin: 5px 0;
+.line strong{
+  color:#17365a;
+  font-weight:700;
 }
 
-.line strong {
-  font-weight: 700;
-  color: #17365a;
+.value{
+  min-width:0;
+  overflow-wrap:anywhere;
 }
 
-.value {
-  min-width: 0;
-  overflow-wrap: anywhere;
+.amount{
+  color:#111!important;
+  font-size:12px!important;
+  font-weight:700;
 }
 
-/* Số tiền màu đen, cùng cỡ chữ */
+/* CHỈ MỘT COPY MÀU XANH */
 
-.amount {
-  color: #111 !important;
-  font-size: 12px;
+.copy-mini{
+  background:none;
+  border:0;
+  padding:0;
+  margin-left:4px;
+  color:#0875de;
+  font-size:11px;
+  cursor:pointer;
 }
 
-/* Chỉ một chữ COPY nhỏ màu xanh */
+/* QR VUÔNG NHỎ TRÊN HÓA ĐƠN */
 
-.copy-mini {
-  background: none;
-  border: 0;
-  padding: 0;
-  margin-left: 4px;
-  color: #0875de;
-  font-size: 11px;
-  cursor: pointer;
+.qr-wrap{
+  width:130px;
+  height:130px;
+  border:1px solid #e3e7ea;
+  border-radius:5px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:white;
 }
 
-/* Mã QR vuông, nhỏ gọn */
-
-.qr-wrap {
-  width: 130px;
-  height: 130px;
-  border: 1px solid #e3e7ea;
-  border-radius: 5px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background: white;
+.qr-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 
-.qr-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.qr-hint {
-  font-size: 10px;
-  text-align: center;
-  color: #687a90;
+.qr-hint{
+  font-size:10px;
+  text-align:center;
+  color:#687a90;
+  margin-top:4px;
 }
 
 /* PHÂN KHÚC 3 */
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0;
+.buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:16px 0;
 }
 
-.shot {
-  border: 0;
-  color: #fff;
-  padding: 9px 12px;
-  border-radius: 22px;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  background: #1269cb;
+.shot{
+  border:0;
+  color:white;
+  padding:9px 12px;
+  border-radius:22px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  background:#1269cb;
 }
 
-.shot.red {
-  background: #d62d38;
+.shot.red{background:#d62d38}
+
+.shot:hover{filter:brightness(.94)}
+
+.shot:disabled{
+  opacity:.6;
+  cursor:wait;
 }
 
-.shot:hover {
-  filter: brightness(0.94);
+/* PHẦN CHỈNH SỬA */
+
+.editor{
+  border-top:1px solid #e4e9ef;
+  padding-top:8px;
 }
 
-.editor {
-  border-top: 1px solid #e4e9ef;
-  padding-top: 8px;
-}
+.field{margin:10px 0}
 
-.field {
-  margin: 10px 0;
-}
-
-.field label {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 6px;
+.field label{
+  display:block;
+  font-size:12px;
+  margin-bottom:6px;
 }
 
 .field input,
-.field select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #d7dce2;
-  border-radius: 6px;
-  background: #fafafa;
-  color: #203a54;
-  font: 12px Arial;
+.field select{
+  width:100%;
+  padding:10px;
+  border:1px solid #d7dce2;
+  border-radius:6px;
+  background:#fafafa;
+  color:#203a54;
+  font:12px Arial;
 }
 
-.status {
-  color: #a03b35;
-  font-size: 11px;
-  line-height: 1.4;
-  min-height: 14px;
+.foot{
+  color:#708097;
+  font-size:10px;
+  line-height:1.6;
+  margin-top:14px;
 }
 
-.foot {
-  font-size: 10px;
-  color: #708097;
-  line-height: 1.5;
-  margin-top: 14px;
+/* THÔNG BÁO */
+
+.toast{
+  position:fixed;
+  top:20px;
+  right:16px;
+  max-width:min(360px,calc(100vw - 32px));
+  border-radius:10px;
+  padding:13px 16px;
+  color:white;
+  background:#0b62d6;
+  box-shadow:0 8px 24px #0002;
+  z-index:9999;
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+  transition:.2s;
+  font-size:13px;
+  font-weight:600;
 }
 
-/* Thông báo sao chép ảnh */
-
-.toast {
-  position: fixed;
-  top: 20px;
-  right: 16px;
-  max-width: min(360px, calc(100vw - 32px));
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: white;
-  background: #0b62d6;
-  box-shadow: 0 8px 24px #0002;
-  z-index: 9999;
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-  transition: opacity .2s, transform .2s;
-  font-size: 13px;
-  font-weight: 600;
+.toast.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.toast.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.toast.error{background:#d93025}
 
-.toast.error {
-  background: #d93025;
-}
+/* ĐIỆN THOẠI */
 
-/* Điện thoại */
-
-@media(max-width:400px) {
-  .page {
-    padding: 18px 12px;
+@media(max-width:400px){
+  .page{padding:18px 12px}
+  .details{
+    grid-template-columns:minmax(0,1fr) 108px;
   }
-
-  .details {
-    grid-template-columns: minmax(0,1fr) 108px;
+  .qr-wrap{
+    width:108px;
+    height:108px;
   }
-
-  .qr-wrap {
-    width: 108px;
-    height: 108px;
-  }
-
-  .line {
-    grid-template-columns: 77px 1fr;
-    font-size: 11px;
-  }
-
-  h1 {
-    font-size: 18px;
-  }
-
-  .brand {
-    font-size: 21px;
+  .line{
+    grid-template-columns:77px 1fr;
+    font-size:11px;
   }
 }
 
-@media print {
-  body {
-    background: white;
-  }
+/* KHI IN */
 
-  .page {
-    box-shadow: none;
-    margin: 0;
-    width: 100%;
+@media print{
+  body{background:#fff}
+  .page{
+    margin:0;
+    width:100%;
+    box-shadow:none;
   }
-
-  .editor,
-  .buttons,
-  .foot,
-  .status {
-    display: none !important;
-  }
+  .editor,.buttons,.foot{display:none!important}
 }
 </style>
 </head>
@@ -334,9 +300,11 @@ h1 {
 
 <main class="page">
 
-<!-- PHÂN KHÚC 1 -->
+<!-- HÓA ĐƠN ĐƯỢC SAO CHÉP ẢNH -->
 
 <div id="invoice">
+
+<!-- PHÂN KHÚC 1 -->
 
 <h1>CỔNG THANH TOÁN TRỰC TUYẾN</h1>
 
@@ -344,7 +312,7 @@ h1 {
   ÉN VIỆT <b>GROUP</b>
 </div>
 
-<div class="methods" id="methods">
+<div class="methods">
 
   <label class="option">
     <input type="radio" name="method" value="atm">
@@ -375,7 +343,7 @@ h1 {
 
 <!-- PHÂN KHÚC 2 -->
 
-<section class="transfer" id="transfer">
+<section class="transfer">
 
   <div class="transfer-heading">
     Chuyển khoản
@@ -383,9 +351,10 @@ h1 {
   </div>
 
   <p class="warning">
-    Vui lòng kiểm tra và xác nhận độc lập thông tin
-    người nhận với đại lý trước khi chuyển tiền.
-    Mã QR không phải bằng chứng thanh toán.
+    Vui lòng kiểm tra và xác nhận độc lập
+    thông tin người nhận với đại lý trước khi
+    chuyển tiền. Mã QR không phải bằng chứng
+    thanh toán.
   </p>
 
   <div class="details">
@@ -409,9 +378,7 @@ h1 {
           <button
             type="button"
             class="copy-mini"
-            id="copyMemo">
-            Copy
-          </button>
+            id="copyMemo">Copy</button>
         </span>
       </div>
 
@@ -428,16 +395,13 @@ h1 {
     </div>
 
     <div>
-
       <div class="qr-wrap">
         <img
-          id="qr"
+          id="qrSmall"
           alt="Mã QR chuyển khoản"
           crossorigin="anonymous">
       </div>
-
       <div class="qr-hint" id="qrHint"></div>
-
     </div>
 
   </div>
@@ -450,11 +414,11 @@ h1 {
 
 <div class="buttons">
 
-  <button type="button" class="shot" id="saveInvoice">
+  <button class="shot" type="button" id="captureInvoice">
     📸 CHỤP HÓA ĐƠN
   </button>
 
-  <button type="button" class="shot red" id="saveQr">
+  <button class="shot red" type="button" id="captureQR">
     📷 CHỤP MÃ QR
   </button>
 
@@ -466,9 +430,7 @@ h1 {
 
   <div class="field">
     <label for="holder">Tên tài khoản</label>
-    <input
-      id="holder"
-      value="Huỳnh Anh Vũ">
+    <input id="holder" value="Huỳnh Anh Vũ">
   </div>
 
   <div class="field">
@@ -482,9 +444,7 @@ h1 {
 
   <div class="field">
     <label for="memo">Nội dung</label>
-    <input
-      id="memo"
-      value="MDL707">
+    <input id="memo" value="MDL707">
   </div>
 
   <div class="field">
@@ -492,9 +452,7 @@ h1 {
     <label for="bank">Ngân hàng</label>
 
     <select id="bank">
-      <option value="MB">
-        MB – Ngân hàng TMCP Quân Đội
-      </option>
+      <option value="MB">MB – Ngân hàng TMCP Quân Đội</option>
       <option value="VCB">Vietcombank</option>
       <option value="ACB">ACB</option>
       <option value="BIDV">BIDV</option>
@@ -528,192 +486,226 @@ h1 {
 
 </div>
 
-<div id="status" class="status" role="status"></div>
-
-<div
-  id="toast"
-  class="toast"
-  role="status"
-  aria-live="polite">
-</div>
-
 <p class="foot">
-  Bản mẫu chưa kết nối cổng thanh toán thẻ hoặc
-  xác nhận chuyển khoản tự động.
-  QR được tạo từ dịch vụ bên ngoài;
-  hãy quét kiểm tra người nhận trước khi dùng.
-  Phần chỉnh sửa cần được bảo vệ khi triển khai cho khách.
+  QR được tạo từ dịch vụ bên ngoài.
+  Vui lòng quét kiểm tra đúng tên người nhận
+  và số tài khoản trước khi chuyển tiền.
+  Các phương thức thanh toán thẻ chưa được
+  kết nối xử lý giao dịch thật.
 </p>
 
 </main>
 
-<!-- Thư viện tạo ảnh hóa đơn -->
+<!-- THÔNG BÁO -->
+
+<div id="toast" class="toast" role="status"></div>
+
+<!-- THƯ VIỆN CHỤP ẢNH -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
-
 const $ = id => document.getElementById(id);
 
-let qrReady = false;
+let qrSmallReady = false;
+let qrPrintReady = false;
+let qrVersion = 0;
 let toastTimer;
 
-/* THÔNG BÁO */
+/* ẢNH QR LỚN DẠNG PRINT
+   Giữ nguyên phần logo và ngân hàng do
+   dịch vụ VietQR cung cấp trong ảnh. */
 
-function toast(message, error = false) {
+const qrPrint = new Image();
+qrPrint.crossOrigin = "anonymous";
 
-  const element = $("toast");
+/* HIỂN THỊ THÔNG BÁO */
 
-  element.textContent = message;
+function showToast(message, isError = false) {
+  const el = $("toast");
 
-  element.classList.toggle("error", error);
-  element.classList.add("visible");
+  el.textContent = message;
+  el.classList.toggle("error", isError);
+  el.classList.add("visible");
 
   clearTimeout(toastTimer);
 
   toastTimer = setTimeout(() => {
-    element.classList.remove("visible");
+    el.classList.remove("visible");
   }, 2600);
-
 }
 
-/* CẬP NHẬT HÓA ĐƠN VÀ QR */
+/* ĐỊNH DẠNG SỐ TIỀN */
 
-function update() {
+function formatMoney(value) {
+  return new Intl.NumberFormat("vi-VN")
+    .format(Number(value) || 0) + " VNĐ";
+}
 
-  const bank = $("bank");
+/* TẠO ĐƯỜNG DẪN ẢNH QR */
 
-  const code = bank.value;
+function makeQRURL(template) {
+
+  const bank = $("bank").value;
   const account = $("account").value.trim();
   const holder = $("holder").value.trim();
-  const amount = $("amount").value;
   const memo = $("memo").value.trim();
+  const amount = Math.round(Number($("amount").value) || 0);
+
+  const url = new URL(
+    "https://img.vietqr.io/image/" +
+    encodeURIComponent(bank) + "-" +
+    encodeURIComponent(account) + "-" +
+    template + ".png"
+  );
+
+  url.searchParams.set("amount", amount);
+  url.searchParams.set("addInfo", memo);
+  url.searchParams.set("accountName", holder);
+
+  return url.toString();
+}
+
+/* CẬP NHẬT THÔNG TIN */
+
+function updateInvoice() {
+
+  const bank = $("bank");
+  const holder = $("holder").value.trim();
+  const account = $("account").value.trim();
+  const memo = $("memo").value.trim();
+  const amount = Number($("amount").value);
 
   $("outHolder").textContent = holder || "—";
-
-  $("outAmount").textContent =
-    new Intl.NumberFormat("vi-VN").format(
-      Number(amount) || 0
-    ) + " VNĐ";
-
+  $("outAccount").textContent = account || "—";
   $("outMemo").textContent = memo || "—";
+  $("outAmount").textContent = formatMoney(amount);
 
   $("outBank").textContent =
     bank.selectedOptions[0].textContent.trim();
 
-  $("outAccount").textContent = account || "—";
+  $("copyMemo").textContent = "Copy";
 
-  qrReady = false;
+  qrVersion++;
+  qrSmallReady = false;
+  qrPrintReady = false;
+
+  const currentVersion = qrVersion;
+
+  if (!bank.value || !account || !(amount > 0)) {
+
+    $("qrSmall").removeAttribute("src");
+    qrPrint.removeAttribute("src");
+
+    $("qrHint").textContent =
+      "Vui lòng nhập đủ ngân hàng, STK và số tiền.";
+
+    return;
+  }
 
   $("qrHint").textContent = "Đang tải QR…";
 
-  if (!account || !code) {
+  /* QR nhỏ trên hóa đơn */
 
-    $("qr").removeAttribute("src");
+  const smallURL = makeQRURL("compact2");
 
-    $("qrHint").textContent =
-      "Thiếu thông tin QR";
+  const smallImg = new Image();
+  smallImg.crossOrigin = "anonymous";
 
-    return;
-  }
+  smallImg.onload = () => {
+    if (currentVersion !== qrVersion) return;
+    qrSmallReady = true;
+    $("qrSmall").src = smallImg.src;
+    $("qrHint").textContent = "";
+  };
 
-  const qrURL =
-    "https://img.vietqr.io/image/" +
-    encodeURIComponent(code) + "-" +
-    encodeURIComponent(account) +
-    "-qr_only.png?amount=" +
-    encodeURIComponent(Math.round(Number(amount) || 0)) +
-    "&addInfo=" + encodeURIComponent(memo) +
-    "&accountName=" + encodeURIComponent(holder);
+  smallImg.onerror = () => {
+    if (currentVersion !== qrVersion) return;
+    qrSmallReady = false;
+    $("qrHint").textContent = "Không tải được mã QR.";
+  };
 
-  $("qr").src = qrURL;
+  smallImg.src = smallURL;
 
+  /* QR lớn dùng để chụp:
+     print.png gồm phần QR và thương hiệu
+     do dịch vụ trả về theo ngân hàng đã chọn */
+
+  const printURL = makeQRURL("print");
+
+  const printImg = new Image();
+  printImg.crossOrigin = "anonymous";
+
+  printImg.onload = () => {
+    if (currentVersion !== qrVersion) return;
+    qrPrint.src = printImg.src;
+    qrPrintReady = true;
+  };
+
+  printImg.onerror = () => {
+    if (currentVersion !== qrVersion) return;
+    qrPrintReady = false;
+  };
+
+  printImg.src = printURL;
 }
 
-/* NHẬP LÀ TỰ CẬP NHẬT */
+/* TỰ CẬP NHẬT KHI NHẬP */
 
-[
-  "holder",
-  "amount",
-  "memo",
-  "bank",
-  "account"
-].forEach(id => {
-
-  $(id).addEventListener("input", update);
-  $(id).addEventListener("change", update);
-
+["holder","amount","memo","bank","account"].forEach(id => {
+  $(id).addEventListener("input", updateInvoice);
+  $(id).addEventListener("change", updateInvoice);
 });
 
-/* KIỂM TRA QR */
+/* COPY CHỮ NỘI DUNG */
 
-$("qr").onload = () => {
-
-  qrReady = true;
-  $("qrHint").textContent = "";
-
-};
-
-$("qr").onerror = () => {
-
-  qrReady = false;
-
-  $("qrHint").textContent =
-    "Không tải được QR; kiểm tra kết nối và STK";
-
-};
-
-/* COPY NỘI DUNG */
-
-$("copyMemo").onclick = async () => {
-
+$("copyMemo").addEventListener("click", async () => {
   try {
-
-    await navigator.clipboard.writeText(
-      $("memo").value
-    );
+    await navigator.clipboard.writeText($("memo").value);
 
     $("copyMemo").textContent = "Đã Copy";
 
-    toast("Đã sao chép nội dung chuyển khoản!");
-
-  } catch (error) {
-
-    window.prompt(
-      "Sao chép nội dung:",
-      $("memo").value
-    );
-
+    showToast("Đã sao chép nội dung chuyển khoản!");
+  } catch (err) {
+    showToast("Không thể sao chép nội dung.", true);
   }
+});
 
-};
+/* TẠO BLOB PNG TỪ CANVAS */
 
-/* KIỂM TRA QUYỀN SAO CHÉP ẢNH */
-
-function clipboardSupported() {
-
-  return window.isSecureContext &&
-    !!navigator.clipboard?.write &&
-    typeof ClipboardItem !== "undefined";
-
+function canvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    try {
+      canvas.toBlob(blob => {
+        if (blob) resolve(blob);
+        else reject(new Error("Không tạo được ảnh PNG"));
+      }, "image/png");
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
 
-/* CHÉP ẢNH PNG VÀO BỘ NHỚ TẠM */
+/* SAO CHÉP ẢNH VÀO CLIPBOARD */
 
-function copyPng(blobPromise, successMessage) {
+function copyImage(blobPromise, successText) {
 
-  if (!clipboardSupported()) {
-
-    toast(
-      "Trình duyệt không hỗ trợ sao chép ảnh tại đây. " +
-      "Hãy dùng HTTPS trên Chrome hoặc Edge.",
+  if (
+    !window.isSecureContext ||
+    !navigator.clipboard?.write ||
+    typeof ClipboardItem === "undefined"
+  ) {
+    showToast(
+      "Trình duyệt không hỗ trợ sao chép ảnh. Hãy mở bằng Chrome hoặc Edge qua HTTPS.",
       true
     );
-
     return;
   }
 
   try {
+
+    /* ClipboardItem nhận Promise ngay trong
+       sự kiện bấm để giữ quyền ghi clipboard. */
 
     const item = new ClipboardItem({
       "image/png": blobPromise
@@ -721,90 +713,43 @@ function copyPng(blobPromise, successMessage) {
 
     navigator.clipboard.write([item])
       .then(() => {
-        toast(successMessage);
+        showToast(successText);
       })
-      .catch(() => {
-        toast(
-          "Không thể sao chép ảnh. " +
-          "Hãy kiểm tra quyền clipboard và thử lại.",
+      .catch(error => {
+        console.error(error);
+        showToast(
+          "Không thể sao chép ảnh. Kiểm tra quyền clipboard và thử lại.",
           true
         );
       });
 
-  } catch (error) {
-
-    toast(
-      "Không thể sao chép ảnh trên trình duyệt này.",
-      true
-    );
-
+  } catch (err) {
+    console.error(err);
+    showToast("Không thể sao chép ảnh.", true);
   }
-
 }
 
-/* CHUYỂN CANVAS SANG PNG */
+/* CHỤP HÓA ĐƠN */
 
-function canvasPng(canvas) {
-
-  return new Promise((resolve, reject) => {
-
-    canvas.toBlob(blob => {
-
-      if (blob) {
-        resolve(blob);
-      } else {
-        reject(new Error("Không xuất được PNG"));
-      }
-
-    }, "image/png");
-
-  });
-
-}
-
-/* KIỂM TRA QR TRƯỚC KHI CHỤP */
-
-function ensureQR() {
-
-  if (
-    !qrReady ||
-    !$("qr").complete ||
-    !$("qr").naturalWidth
-  ) {
-
-    throw new Error("Mã QR chưa tải thành công");
-
-  }
-
-}
-
-/* CHỤP HÓA ĐƠN = COPY ẢNH */
-
-$("saveInvoice").addEventListener("click", () => {
+$("captureInvoice").addEventListener("click", () => {
 
   if (typeof html2canvas !== "function") {
-
-    toast(
-      "Không tải được thư viện chụp. " +
-      "Kiểm tra kết nối Internet.",
+    showToast(
+      "Không tải được thư viện chụp ảnh.",
       true
     );
-
     return;
   }
 
-  if (!qrReady) {
-
-    toast(
-      "Mã QR chưa tải xong. " +
-      "Vui lòng chờ trước khi chụp hóa đơn.",
+  if (!qrSmallReady) {
+    showToast(
+      "Mã QR chưa tải xong, vui lòng thử lại.",
       true
     );
-
     return;
   }
 
-  const png = html2canvas(
+  const pngPromise = html2canvas(
     $("invoice"),
     {
       backgroundColor: "#ffffff",
@@ -813,71 +758,62 @@ $("saveInvoice").addEventListener("click", () => {
       allowTaint: false,
       logging: false
     }
-  ).then(canvas => canvasPng(canvas));
+  ).then(canvasToBlob);
 
-  copyPng(
-    png,
-    "Đã sao chép ảnh hóa đơn! " +
-    "Nhấn Ctrl + V để dán vào Messenger hoặc Zalo."
+  copyImage(
+    pngPromise,
+    "Đã sao chép ảnh hóa đơn! Nhấn Ctrl + V để dán."
   );
 
 });
 
-/* CHỤP MÃ QR = COPY RIÊNG ẢNH QR */
+/* CHỤP MÃ QR LỚN GIỐNG ẢNH MẪU */
 
-$("saveQr").addEventListener("click", () => {
+$("captureQR").addEventListener("click", () => {
 
-  try {
-
-    ensureQR();
-
-  } catch (error) {
-
-    toast(
-      "Mã QR chưa hiển thị đúng, không thể sao chép.",
+  if (
+    !qrPrintReady ||
+    !qrPrint.complete ||
+    !qrPrint.naturalWidth
+  ) {
+    showToast(
+      "Ảnh QR lớn chưa tải được. Kiểm tra kết nối và thử lại.",
       true
     );
-
     return;
   }
 
-  const png = Promise.resolve().then(() => {
+  /* Chép nguyên ảnh print do VietQR trả về,
+     không tự vẽ QR hoặc gắn logo ngân hàng sai. */
 
-    const img = $("qr");
+  const pngPromise = Promise.resolve().then(() => {
 
     const canvas = document.createElement("canvas");
 
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
+    canvas.width = qrPrint.naturalWidth;
+    canvas.height = qrPrint.naturalHeight;
 
     const ctx = canvas.getContext("2d");
 
     ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    ctx.drawImage(qrPrint, 0, 0);
 
-    ctx.drawImage(img, 0, 0);
-
-    return canvasPng(canvas);
+    return canvasToBlob(canvas);
 
   });
 
-  copyPng(
-    png,
-    "Đã sao chép ảnh mã QR! " +
-    "Nhấn Ctrl + V để dán."
+  copyImage(
+    pngPromise,
+    "Đã sao chép ảnh QR! Nhấn Ctrl + V để dán."
   );
 
 });
 
 /* KHỞI TẠO */
 
-update();
+updateInvoice();
 
 </script>
 
