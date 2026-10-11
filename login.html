@@ -1,39 +1,7 @@
-<!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Én Việt Group | Đăng nhập quản trị</title>
-<style>
-:root{--orange:#ff850c;--blue:#064e9a;--navy:#082f66}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
-body{background:#09519b;color:var(--navy)}
-.scene{position:relative;isolation:isolate;min-height:100svh;padding:122px clamp(16px,6vw,110px) 36px;display:flex;align-items:center;justify-content:flex-end;background:#0564b1 url('./nen_enviet_khong_chu.jpg') center center/cover no-repeat;overflow:hidden}
-.headline{position:absolute;top:24px;left:3%;right:3%;z-index:2;text-align:center;font-size:clamp(18px,2.35vw,39px);line-height:1.28;font-weight:900;letter-spacing:-.4px;color:#fff;text-shadow:0 0 6px #eaf5ff,0 0 13px #237fea;animation:shineText 4s ease-in-out infinite}
-.headline strong{color:#ffac3f;text-shadow:0 0 3px #a04b06,0 0 15px #ff9f2d}
-.trail{position:absolute;top:96px;left:8%;right:8%;height:3px;z-index:2;background:linear-gradient(90deg,transparent,#ffca72,#fff,#fb7200,transparent);box-shadow:0 0 10px #ffc37c;overflow:hidden}
-.trail:before{content:'';position:absolute;top:0;bottom:0;width:25%;background:linear-gradient(90deg,transparent,#fff,transparent);animation:sweep 7s linear infinite}
-.iconplane{position:absolute;top:67px;right:4%;z-index:2;font-size:38px;color:white;filter:drop-shadow(0 0 8px #ffab25);transform:rotate(-15deg)}
-.panel{position:relative;z-index:3;width:min(100%,450px);padding:29px 36px 27px;border-radius:21px;background:#fff;box-shadow:0 18px 60px #03285568;text-align:center}
-.bird{display:block;width:93px;height:75px;margin:auto auto 7px}.brand{margin:0;color:#074f9a;font-size:29px;font-weight:900}.brand span{color:#f5720c}.sub{margin:12px 0 18px;font-size:11px;font-weight:bold;letter-spacing:2.4px;color:#214779}.rule{width:66px;height:3px;margin:0 auto 25px;background:#ff850c}
-h1{font-size:24px;margin:0 0 22px}.field{position:relative;margin-bottom:14px}.field input{width:100%;height:56px;border:1px solid #cedde9;border-radius:9px;background:#fff;padding:0 17px;font-size:16px;color:#153b66}.field input:focus{outline:2px solid #84bee9}.field.pass input{padding-right:75px}.show{position:absolute;top:8px;right:8px;padding:11px;border:0;background:transparent;color:#0b62a3;cursor:pointer}
-.login{width:100%;padding:17px;border:0;border-radius:10px;background:linear-gradient(90deg,#ffa10d,#ff6505);font-size:17px;font-weight:800;color:white;cursor:pointer;animation:buttonGlow 3.5s ease-in-out infinite}.login:disabled{opacity:.65;cursor:wait}
-#msg{min-height:20px;margin:17px 0 8px;font-size:13px;line-height:1.5}.foot{border-top:1px solid #dce3eb;padding-top:17px;margin-top:13px;font-size:12px;color:#6e8193}
-@keyframes shineText{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}@keyframes sweep{from{left:-30%}to{left:120%}}@keyframes buttonGlow{0%,100%{box-shadow:0 5px 12px #ff8c0055}50%{box-shadow:0 0 23px #ff9000aa;filter:brightness(1.06)}}
-@media(max-width:900px){.scene{padding-top:160px;background-position:42% center}.headline{font-size:clamp(17px,3vw,24px);white-space:normal}.trail{top:122px}.iconplane{top:98px}.panel{width:min(100%,410px)}}
-@media(max-width:600px){.scene{justify-content:center;padding:125px 15px 24px;background-position:35% center}.headline{top:12px;font-size:17px}.trail{top:105px}.iconplane{display:none}.panel{padding:24px 21px;width:min(100%,410px)}.brand{font-size:26px}}
-@media(prefers-reduced-motion:reduce){.headline,.trail:before,.login{animation:none}}
-</style></head><body>
-<section class="scene">
-<div class="headline"><strong>ÉN VIỆT GROUP</strong> – KẾT NỐI BẦU TRỜI VIỆT, VƯƠN TỚI THẾ GIỚI</div><div class="trail" aria-hidden="true"></div><div class="iconplane" aria-hidden="true">✈</div>
-<main class="panel"><svg class="bird" viewBox="0 0 120 90" role="img" aria-label="Biểu tượng chim én"><path fill="#ff8608" d="M7 11 Q40 32 73 44 Q49 46 30 32 Q47 53 73 54 Q48 60 30 49 Q48 69 77 64 Q43 77 25 59 Q53 87 84 65"/><path fill="#0666b8" d="M73 44 Q93 30 108 43 Q113 48 116 45 Q112 55 103 54 Q92 83 46 83 Q79 70 73 44Z"/></svg>
-<div class="brand">ÉN VIỆT <span>GROUP</span></div><div class="sub">CỔNG THANH TOÁN TRỰC TUYẾN</div><div class="rule"></div><h1>Đăng nhập quản trị</h1>
-<form id="loginForm"><div class="field"><input id="email" type="email" autocomplete="username" aria-label="Email" placeholder="Email" required></div><div class="field pass"><input id="password" type="password" autocomplete="current-password" aria-label="Mật khẩu" placeholder="Mật khẩu" required><button type="button" class="show" id="showPassword">Hiện</button></div><button class="login" id="loginBtn" type="submit">ĐĂNG NHẬP →</button></form>
-<p id="msg" role="status" aria-live="polite"></p><div class="foot">Chỉ dành cho nhân viên được cấp quyền</div></main>
-</section>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đăng nhập - Én Việt Group</title><link rel="stylesheet" href="style.css"></head><body>
+<main class="page login"><h1 class="main-heading">CỔNG THANH TOÁN TRỰC TUYẾN</h1><div class="brand">ÉN VIỆT <b>GROUP</b></div><h2>Đăng nhập</h2><p class="subheading">Dành cho tài khoản quản trị được cấp quyền</p>
+<form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Mật khẩu</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginBtn" class="primary" style="width:100%" type="submit">ĐĂNG NHẬP</button></form><p id="msg" class="status" role="status"></p></main>
 <script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-import {getAuth,signInWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-const config={apiKey:'AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o',authDomain:'enviet-payment-center.firebaseapp.com',projectId:'enviet-payment-center',storageBucket:'enviet-payment-center.firebasestorage.app',messagingSenderId:'995803196860',appId:'1:995803196860:web:623863bdf426b079ac0fb9',measurementId:'G-2DVDS6V976'};
-const auth=getAuth(initializeApp(config));
-const $=id=>document.getElementById(id);
-$('showPassword').onclick=()=>{const x=$('password');const show=x.type==='password';x.type=show?'text':'password';$('showPassword').textContent=show?'Ẩn':'Hiện'};
-$('loginForm').addEventListener('submit',async e=>{e.preventDefault();const btn=$('loginBtn'),msg=$('msg');btn.disabled=true;msg.style.color='#07549a';msg.textContent='Đang xác thực...';try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value);msg.style.color='#15803d';    msg.textContent='Đăng nhập thành công!';window.location.replace('./admin.html');}catch(err){msg.style.color='#bd2940';msg.textContent=err.code==='auth/unauthorized-domain'?'Tên miền chưa được cấp quyền trong Firebase.':'Đăng nhập thất bại. Kiểm tra Email và mật khẩu.';}finally{btn.disabled=false;$('password').value=''}});
+import{auth,authReady,adminUser}from'./shared.js';import{signInWithEmailAndPassword}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+const msg=document.getElementById('msg'),btn=document.getElementById('loginBtn');const u=await authReady();if(adminUser(u))location.replace('phieu.html');document.getElementById('loginForm').onsubmit=async e=>{e.preventDefault();btn.disabled=true;msg.textContent='Đang xác thực...';msg.className='status';try{const r=await signInWithEmailAndPassword(auth,document.getElementById('email').value.trim(),document.getElementById('password').value);if(!adminUser(r.user)){await auth.signOut();throw Error('Tài khoản không có quyền quản trị')}location.replace('phieu.html')}catch(err){msg.textContent=err.message==='Tài khoản không có quyền quản trị'?err.message:'Sai thông tin đăng nhập, chưa cấp quyền hoặc lỗi kết nối.';msg.className='status error'}finally{btn.disabled=false}};
 </script></body></html>

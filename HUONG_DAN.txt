@@ -1,0 +1,23 @@
+ÉN VIỆT GROUP — BỘ 3 TRANG
+
+1. Vào Firebase Console > Firestore Database, tạo database nếu chưa có.
+2. Vào Firestore Database > Rules. Sao chép toàn bộ firestore.rules rồi nhấn Publish.
+   CẢNH BÁO: Nếu bạn đang dùng các collection khác trong Firebase này,
+   phần match /{other=**} sẽ chặn chúng. Hãy hợp nhất rules hiện có,
+   không ghi đè tùy tiện.
+3. Tải lên THƯ MỤC GỐC (root) kho GitHub Pages các file:
+   login.html, phieu.html, admin.html, shared.js, style.css.
+   Không cần tải firestore.rules lên GitHub; file này chỉ dùng trong Firebase Rules.
+4. Đăng nhập tại login.html -> tự vào phieu.html -> nhập thông tin và
+   chọn LƯU VÀ TẠO LINK KHÁCH. Khách nhận link phieu.html?id=... để xem.
+5. admin.html quản lý danh sách phiếu và xóa. Chỉ UID quản trị có quyền.
+
+Chú ý:
+- Chưa tích hợp thanh toán thẻ VNPAY/OnePay. Các ô thẻ chỉ chọn giao diện.
+- QR lấy từ dịch vụ img.vietqr.io. Luôn quét đối chiếu ngân hàng, chủ tài khoản,
+  số tài khoản, số tiền trước khi cung cấp cho khách.
+- Chụp hóa đơn và chụp QR: sao chép ảnh vào clipboard, dán bằng Ctrl+V.
+  Cần HTTPS và trình duyệt hỗ trợ clipboard. Nếu lỗi CORS sẽ báo thất bại.
+- Không công khai thông tin hành khách nhạy cảm trong phiếu công cộng.
+- Firebase Config không phải mật khẩu; bảo vệ dữ liệu bằng Firestore Rules.
+- Nếu hiện lỗi missing index/rules, kiểm tra Firebase Firestore console.
