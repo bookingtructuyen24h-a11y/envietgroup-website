@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phiếu thanh toán | Én Việt Group</title>
+<style>
+:root{
+ --blue:#075d9e;
+ --navy:#173a65;
+ --orange:#ed7b16;
+ --gold:#bc893b;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#edf4fa;
+ font:15px Arial,sans-serif;
+ color:var(--navy);
+}
+.wrapper{
+ max-width:900px;
+ margin:25px auto;
+ padding:0 16px;
+}
+.invoice,.editor{
+ background:#fff;
+ border-radius:17px;
+ padding:32px;
+ box-shadow:0 8px 28px #103a6015;
+ margin-bottom:25px;
+}
+.top{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ border-bottom:1px solid #d9bd91;
+ padding-bottom:20px;
+}
+.brand{
+ font-size:25px;
+ font-weight:900;
+ color:var(--blue);
+}
+.brand span{color:var(--orange)}
+.small{
+ font-size:11px;
+ color:#657f99;
+ letter-spacing:1px;
+ margin-top:6px;
+}
+.plane{
+ font-size:37px;
+ color:var(--gold);
+}
+.invoice-title{
+ text-align:center;
+ width:100%;
+ margin:32px auto 25px;
+}
+.invoice-title h1{
+ margin:0;
+ color:#20334e;
+ font-size:29px;
+}
+.invoice-title h2{
+ margin:10px 0;
+ color:var(--gold);
+ font-size:25px;
+}
+.invoice-title p{
+ font-size:13px;
+ color:#728396;
+}
+.info-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-bottom:22px;
+}
+.info-box{
+ background:#f3f7fb;
+ padding:17px;
+ border-radius:10px;
+ overflow-wrap:anywhere;
+}
+.info-box small{
+ display:block;
+ color:#66819b;
+ margin-bottom:9px;
+}
+.info-box strong{
+ font-size:16px;
+}
+.section{
+ border:1px solid #e1d1b8;
+ border-radius:12px;
+ margin-bottom:20px;
+ overflow:hidden;
+}
+.section-title{
+ background:#f7f2e9;
+ padding:15px;
+ font-weight:bold;
+ color:#8e641e;
+}
+.payment{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+ padding:24px;
+}
+.amount{
+ font-size:28px;
+ font-weight:900;
+ color:var(--orange);
+ margin-top:15px;
+ overflow-wrap:anywhere;
+}
+.method{
+ color:var(--gold);
+ font-size:22px;
+ font-weight:bold;
+ margin-top:15px;
+}
+.account-layout{
+ display:grid;
+ grid-template-columns:1.5fr 1fr;
+ gap:20px;
+ padding:20px;
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+}
+td{
+ padding:13px 8px;
+ border-bottom:1px solid #e2eaf0;
+ overflow-wrap:anywhere;
+}
+td:first-child{
+ color:#637d96;
+ width:42%;
+}
+td:last-child{
+ font-weight:bold;
+}
+.qr-area{
+ background:#f4f8fb;
+ border-radius:12px;
+ text-align:center;
+ padding:22px 12px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ gap:12px;
+}
+.qr-icon{
+ font-size:75px;
+ color:#8da8be;
+}
+.qr-area p{
+ font-size:12px;
+ color:#657b92;
+ line-height:1.6;
+ margin:0;
+}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ padding:0 20px 20px;
+}
+button{
+ border:0;
+ border-radius:8px;
+ padding:12px 16px;
+ font-weight:bold;
+ cursor:pointer;
+ font:inherit;
+}
+.copy-btn{
+ background:#09659d;
+ color:white;
+}
+.print-btn,.save-btn{
+ background:linear-gradient(90deg,#ff9b0f,#f26b09);
+ color:white;
+ font-weight:bold;
+}
+.notice{
+ padding:18px 22px;
+ line-height:1.8;
+ font-size:13px;
+ color:#596f85;
+}
+.thanks{
+ text-align:center;
+ color:#a67b37;
+ font-style:italic;
+ margin:25px 0 10px;
+}
+.footer{
+ background:#07588e;
+ color:white;
+ text-align:center;
+ padding:18px;
+ margin-top:25px;
+ border-radius:9px;
+ font-size:12px;
+}
+.editor{
+ border-top:5px solid var(--orange);
+}
+.editor h2{
+ text-align:center;
+ color:var(--blue);
+ margin:0 0 25px;
+}
+.form-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:15px;
+}
+label{
+ display:block;
+ font-size:13px;
+ font-weight:bold;
+ color:#335a79;
+}
+input,select,textarea{
+ width:100%;
+ padding:13px;
+ border:1px solid #cbdbe8;
+ border-radius:8px;
+ margin-top:8px;
+ font:15px Arial;
+}
+textarea{
+ min-height:80px;
+ resize:vertical;
+}
+.full{grid-column:1/-1}
+#message{
+ text-align:center;
+ color:#087543;
+ min-height:20px;
+ margin-top:15px;
+}
+.disclaimer{
+ font-size:12px;
+ color:#687c90;
+ line-height:1.6;
+}
+@media(max-width:650px){
+ .invoice,.editor{padding:18px}
+ .info-grid,.payment,.account-layout,.form-grid{
+  grid-template-columns:1fr;
+ }
+ .invoice-title h1{font-size:23px}
+ .invoice-title h2{font-size:21px}
+ .brand{font-size:21px}
+}
+@media print{
+ body{background:#fff}
+ .wrapper{max-width:none;margin:0;padding:0}
+ .invoice{box-shadow:none;margin:0;padding:15px}
+ .editor,.actions,.disclaimer,#message{
+  display:none!important;
+ }
+ .section{break-inside:avoid}
+ .footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<!-- PHIẾU THANH TOÁN -->
+<div class="invoice">
+
+<div class="top">
+ <div>
+  <div class="brand">
+   ÉN VIỆT <span>GROUP</span>
+  </div>
+  <div class="small">
+   CỔNG THANH TOÁN TRỰC TUYẾN
+  </div>
+ </div>
+ <div class="plane">✈</div>
+</div>
+
+<div class="invoice-title">
+ <h1>HÓA ĐƠN THANH TOÁN</h1>
+ <h2>VÉ MÁY BAY</h2>
+ <p>PHIẾU YÊU CẦU THANH TOÁN</p>
+</div>
+
+<div class="info-grid">
+ <div class="info-box">
+  <small>Mã giao dịch</small>
+  <strong id="showCode">DEMO-001</strong>
+ </div>
+ <div class="info-box">
+  <small>Thời gian tạo đơn</small>
+  <strong id="showDate">—</strong>
+ </div>
+</div>
+
+<div class="section">
+ <div class="section-title">
+  THÔNG TIN THANH TOÁN
+ </div>
+ <div class="payment">
+  <div>
+   <small>Số tiền cần thanh toán</small>
+   <div class="amount" id="showAmount">
+    0 VNĐ
+   </div>
+  </div>
+  <div>
+   <small>Phương thức thanh toán</small>
+   <div class="method" id="showMethod">
+    Chuyển khoản
+   </div>
+  </div>
+ </div>
+</div>
+
+<div class="section">
+
+ <div class="section-title">
+  THÔNG TIN TÀI KHOẢN NHẬN TIỀN
+ </div>
+
+ <div class="account-layout">
+  <table>
+   <tr>
+    <td>Tên tài khoản</td>
+    <td id="showHolder">—</td>
+   </tr>
+   <tr>
+    <td>Số tài khoản</td>
+    <td id="showAccount">—</td>
+   </tr>
+   <tr>
+    <td>Ngân hàng</td>
+    <td id="showBank">—</td>
+   </tr>
+   <tr>
+    <td>Nội dung chuyển khoản</td>
+    <td id="showContent">—</td>
+   </tr>
+  </table>
+
+  <div class="qr-area">
+   <div class="qr-icon">▦</div>
+   <strong>VIETQR</strong>
+   <p>
+    Chưa thiết lập mã QR thanh toán.
+    Mã VietQR thật sẽ được tích hợp
+    sau khi xác minh tài khoản nhận tiền.
+   </p>
+  </div>
+ </div>
+
+ <div class="actions">
+  <button class="copy-btn" id="copyAccount">
+   Copy số tài khoản
+  </button>
+  <button class="copy-btn" id="copyAmount">
+   Copy số tiền
+  </button>
+  <button class="copy-btn" id="copyContent">
+   Copy nội dung
+  </button>
+ </div>
+
+</div>
+
+<div class="section">
+ <div class="section-title">LƯU Ý</div>
+ <div class="notice">
+  1. Quý khách vui lòng kiểm tra kỹ thông tin
+  người nhận, số tiền và nội dung chuyển khoản.<p></p>
+  2. Đây là phiếu yêu cầu thanh toán,
+  không phải xác nhận đã nhận được tiền.<p></p>
+  3. Vé chỉ được coi là đã xuất khi có
+  xác nhận và thông tin vé hợp lệ từ hãng.
+ </div>
+</div>
+
+<div class="thanks">
+ Cảm ơn Quý khách đã tin tưởng và sử dụng
+ dịch vụ của chúng tôi!
+</div>
+
+<div class="footer">
+ ÉN VIỆT GROUP – HỆ THỐNG THANH TOÁN VÉ MÁY BAY
+</div>
+
+</div>
+
+<!-- PHẦN CHỈNH SỬA BÊN DƯỚI -->
+<div class="editor">
+
+<h2>CHỈNH SỬA THÔNG TIN HÓA ĐƠN</h2>
+
+<div class="form-grid">
+
+<label>
+ Mã giao dịch
+ <input id="code" value="DEMO-001">
+</label>
+
+<label>
+ Ngày tạo
+ <input id="date" type="datetime-local">
+</label>
+
+<label>
+ Số tiền cần thanh toán (VNĐ)
+ <input id="amount" type="number"
+ min="0" step="1" placeholder="3500000">
+</label>
+
+<label>
+ Phương thức thanh toán
+ <select id="method">
+  <option>Chuyển khoản</option>
+  <option>Thanh toán tại phòng vé</option>
+ </select>
+</label>
+
+<label>
+ Ngân hàng nhận
+ <select id="bank">
+  <option value="">-- Chọn ngân hàng --</option>
+  <option value="ACB">ACB</option>
+  <option value="VCB">Vietcombank</option>
+  <option value="MB">MB Bank</option>
+  <option value="BIDV">BIDV</option>
+  <option value="TCB">Techcombank</option>
+  <option value="CTG">VietinBank</option>
+  <option value="AGR">Agribank</option>
+  <option value="VPB">VPBank</option>
+  <option value="TPB">TPBank</option>
+ </select>
+</label>
+
+<label>
+ Tên chủ tài khoản
+ <input id="holder" placeholder="Nhập tên chủ tài khoản">
+</label>
+
+<label>
+ Số tài khoản
+ <input id="account" placeholder="Nhập số tài khoản">
+</label>
+
+<label>
+ Nội dung chuyển khoản
+ <input id="content" placeholder="Nhập nội dung chuyển khoản">
+</label>
+
+</div>
+
+<div class="actions" style="padding:22px 0 0">
+ <button class="print-btn" id="printBtn">
+  IN / LƯU PDF
+ </button>
+ <button class="save-btn" id="resetBtn">
+  XÓA THÔNG TIN
+ </button>
+</div>
+
+<p id="message" role="status"></p>
+<p class="disclaimer">
+ Bản này dùng để tạo và xem phiếu tại trình duyệt.
+ Chưa có lưu Firebase, link riêng cho khách hoặc
+ kết nối đối soát thanh toán ngân hàng.
+</p>
+
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+
+const fields=[
+ "code","date","amount","method",
+ "bank","holder","account","content"
+];
+
+const formatMoney=n=>
+ new Intl.NumberFormat("vi-VN").format(Number(n)||0);
+
+function updateInvoice(){
+
+ $("showCode").textContent=$("code").value||"—";
+
+ const d=$("date").value;
+ $("showDate").textContent=d
+  ?d.slice(8,10)+"/"+d.slice(5,7)+"/"+
+   d.slice(0,4)+" "+d.slice(11,16)
+  :"—";
+
+ $("showAmount").textContent=
+  formatMoney($("amount").value)+" VNĐ";
+
+ $("showMethod").textContent=$("method").value;
+
+ $("showBank").textContent=
+  $("bank").selectedOptions[0]?.textContent||"—";
+
+ if(!$("bank").value)
+  $("showBank").textContent="—";
+
+ $("showHolder").textContent=
+  $("holder").value||"—";
+
+ $("showAccount").textContent=
+  $("account").value||"—";
+
+ $("showContent").textContent=
+  $("content").value||"—";
+}
+
+fields.forEach(id=>{
+ $(id).addEventListener("input",updateInvoice);
+ $(id).addEventListener("change",updateInvoice);
+});
+
+async function copyValue(id){
+ const v=$(id).value;
+ if(!v){
+  $("message").textContent=
+   "Chưa có thông tin để sao chép.";
+  return;
+ }
+ try{
+  await navigator.clipboard.writeText(v);
+  $("message").textContent="Đã sao chép!";
+ }catch{
+  window.prompt("Sao chép thông tin:",v);
+ }
+}
+
+$("copyAccount").onclick=()=>copyValue("account");
+$("copyAmount").onclick=()=>copyValue("amount");
+$("copyContent").onclick=()=>copyValue("content");
+
+$("printBtn").onclick=()=>window.print();
+
+$("resetBtn").onclick=()=>{
+ if(!confirm("Xóa thông tin vừa nhập?"))return;
+ fields.forEach(id=>{
+  if(id==="method")$(id).value="Chuyển khoản";
+  else $(id).value="";
+ });
+ updateInvoice();
+ $("message").textContent="Đã xóa thông tin.";
+};
+
+updateInvoice();
+</script>
+</body>
+</html>
