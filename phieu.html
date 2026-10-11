@@ -44,8 +44,6 @@ h1{text-align:center;font-size:18px;color:#1167cb;font-weight:700;margin:10px 0 
 .details{grid-template-columns:minmax(0,1fr) 108px}
 .qr-wrap{width:108px;height:108px}
 .line{grid-template-columns:77px 1fr;font-size:11px}
-h1{font-size:18px}
-.brand{font-size:21px}
 }
 @media print{
 body{background:white}
@@ -58,10 +56,13 @@ body{background:white}
 </style>
 </head>
 <body>
+
 <main class="page">
 <div id="invoice">
+
 <h1>CỔNG THANH TOÁN TRỰC TUYẾN</h1>
 <div class="brand">ÉN VIỆT <b>GROUP</b></div>
+
 <div class="methods" id="methods">
 <label class="option"><input type="radio" name="method" value="atm">Thẻ ATM/Tài khoản ngân hàng</label>
 <label class="option"><input type="radio" name="method" value="vnpay-atm">Thẻ ATM nội địa qua VNPAY</label>
@@ -71,34 +72,83 @@ body{background:white}
 </div>
 
 <section class="transfer" id="transfer">
-<div class="transfer-heading">Chuyển khoản <small>(Không thu phí từ website)</small></div>
-<p class="warning">Vui lòng kiểm tra và xác nhận độc lập thông tin người nhận với đại lý trước khi chuyển tiền. Mã QR không phải bằng chứng thanh toán.</p>
+<div class="transfer-heading">
+Chuyển khoản <small>(Không thu phí từ website)</small>
+</div>
+
+<p class="warning">
+Vui lòng kiểm tra và xác nhận độc lập thông tin người nhận với đại lý trước khi chuyển tiền. Mã QR không phải bằng chứng thanh toán.
+</p>
+
 <div class="details">
 <div class="lines">
-<div class="line"><strong>Tên tài khoản:</strong><span class="value" id="outHolder"></span></div>
-<div class="line"><strong>Số tiền:</strong><b class="value amount" id="outAmount"></b></div>
-<div class="line"><strong>Nội dung:</strong><span class="value"><span id="outMemo"></span> <button class="copy-mini" id="copyMemo">Copy</button></span></div>
-<div class="line"><strong>Ngân hàng:</strong><span class="value" id="outBank"></span></div>
-<div class="line"><strong>Số tài khoản:</strong><span class="value" id="outAccount"></span></div>
+
+<div class="line">
+<strong>Tên tài khoản:</strong>
+<span class="value" id="outHolder"></span>
 </div>
+
+<div class="line">
+<strong>Số tiền:</strong>
+<b class="value amount" id="outAmount"></b>
+</div>
+
+<div class="line">
+<strong>Nội dung:</strong>
+<span class="value">
+<span id="outMemo"></span>
+<button type="button" class="copy-mini" id="copyMemo">Copy</button>
+</span>
+</div>
+
+<div class="line">
+<strong>Ngân hàng:</strong>
+<span class="value" id="outBank"></span>
+</div>
+
+<div class="line">
+<strong>Số tài khoản:</strong>
+<span class="value" id="outAccount"></span>
+</div>
+
+</div>
+
 <div>
-<div class="qr-wrap"><img id="qr" alt="Mã QR chuyển khoản" crossorigin="anonymous"></div>
+<div class="qr-wrap">
+<img id="qr" alt="Mã QR chuyển khoản" crossorigin="anonymous">
+</div>
 <div class="qr-hint" id="qrHint"></div>
 </div>
+
 </div>
 </section>
 </div>
 
 <div class="buttons">
-<button class="shot" id="saveInvoice">📸 CHỤP HÓA ĐƠN</button>
-<button class="shot red" id="saveQr">▦ CHỤP MÃ QR</button>
+<button type="button" class="shot" id="saveInvoice">📸 CHỤP HÓA ĐƠN</button>
+<button type="button" class="shot red" id="saveQr">▦ CHỤP MÃ QR</button>
 </div>
 
 <div class="editor">
-<div class="field"><label for="holder">Tên tài khoản</label><input id="holder" value="Huỳnh Anh Vũ"></div>
-<div class="field"><label for="amount">Số tiền (VNĐ)</label><input id="amount" type="number" min="0" value="2343534"></div>
-<div class="field"><label for="memo">Nội dung</label><input id="memo" value="MDL707"></div>
-<div class="field"><label for="bank">Ngân hàng</label><select id="bank">
+
+<div class="field">
+<label for="holder">Tên tài khoản</label>
+<input id="holder" value="Huỳnh Anh Vũ">
+</div>
+
+<div class="field">
+<label for="amount">Số tiền (VNĐ)</label>
+<input id="amount" type="number" min="0" value="2343534">
+</div>
+
+<div class="field">
+<label for="memo">Nội dung</label>
+<input id="memo" value="MDL707">
+</div>
+
+<div class="field">
+<label for="bank">Ngân hàng</label>
+<select id="bank">
 <option value="MB">MB – Ngân hàng TMCP Quân Đội</option>
 <option value="VCB">Vietcombank</option>
 <option value="ACB">ACB</option>
@@ -119,20 +169,31 @@ body{background:white}
 <option value="SEAB">SeABank</option>
 <option value="NAB">Nam A Bank</option>
 <option value="ABB">ABBank</option>
-</select></div>
-<div class="field"><label for="account">Số tài khoản</label><input id="account" value="16169699999" inputmode="numeric"></div>
+</select>
+</div>
+
+<div class="field">
+<label for="account">Số tài khoản</label>
+<input id="account" value="16169699999" inputmode="numeric">
+</div>
+
 </div>
 
 <div id="status" class="status" role="status"></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<p class="foot">Bản mẫu chưa kết nối cổng thanh toán thẻ hoặc xác nhận chuyển khoản tự động. QR được yêu cầu từ dịch vụ tạo mã bên ngoài; hãy quét kiểm tra người nhận trước khi dùng. Phần chỉnh sửa cần được bảo vệ khi triển khai cho khách.</p>
+
+<p class="foot">
+Bản mẫu chưa kết nối cổng thanh toán thẻ hoặc xác nhận chuyển khoản tự động. QR được yêu cầu từ dịch vụ tạo mã bên ngoài; hãy quét kiểm tra người nhận trước khi dùng. Phần chỉnh sửa cần được bảo vệ khi triển khai cho khách.
+</p>
+
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-const $=s=>document.getElementById(s);
-let qrReady=false;
+const $ = s => document.getElementById(s);
+let qrReady = false;
 let toastTimer;
+let qrVersion = 0;
 
 function toast(message,error=false){
  const e=$('toast');
@@ -143,22 +204,27 @@ function toast(message,error=false){
  toastTimer=setTimeout(()=>e.classList.remove('visible'),2600);
 }
 
-function status(s){$('status').textContent=s}
-
 function update(){
- let bank=$('bank'),
- code=bank.value,
- acct=$('account').value.trim(),
- holder=$('holder').value.trim(),
- amount=$('amount').value,
- memo=$('memo').value.trim();
+ const bank=$('bank');
+ const code=bank.value;
+ const acct=$('account').value.trim();
+ const holder=$('holder').value.trim();
+ const amount=$('amount').value;
+ const memo=$('memo').value.trim();
 
  $('outHolder').textContent=holder||'—';
- $('outAmount').textContent=new Intl.NumberFormat('vi-VN').format(+amount||0)+' VNĐ';
+ $('outAmount').textContent=
+   new Intl.NumberFormat('vi-VN').format(+amount||0)+' VNĐ';
  $('outMemo').textContent=memo||'—';
  $('outBank').textContent=bank.selectedOptions[0].textContent;
  $('outAccount').textContent=acct||'—';
+ $('copyMemo').textContent='Copy';
+
+ // Chỉ ngân hàng và STK được đưa vào QR.
+ // Không đưa số tiền và nội dung vào mã QR.
  qrReady=false;
+ qrVersion++;
+ const version=qrVersion;
  $('qrHint').textContent='Đang tải QR…';
 
  if(!acct||!code){
@@ -167,19 +233,16 @@ function update(){
   return;
  }
 
- let url='https://img.vietqr.io/image/'+
- encodeURIComponent(code)+'-'+
- encodeURIComponent(acct)+
- '-qr_only.png?amount='+
- encodeURIComponent(Math.round(+amount||0))+
- '&addInfo='+encodeURIComponent(memo)+
- '&accountName='+encodeURIComponent(holder);
+ const url='https://img.vietqr.io/image/'
+   +encodeURIComponent(code)+'-'
+   +encodeURIComponent(acct)+'-qr_only.png';
 
  $('qr').src=url;
 }
 
 for(const id of ['holder','amount','memo','bank','account']){
- $(''+id).addEventListener('input',update);
+ $(id).addEventListener('input',update);
+ $(id).addEventListener('change',update);
 }
 
 $('qr').onload=()=>{
@@ -196,6 +259,7 @@ $('copyMemo').onclick=async()=>{
  try{
   await navigator.clipboard.writeText($('memo').value);
   $('copyMemo').textContent='Đã Copy';
+  toast('Đã sao chép nội dung chuyển khoản!');
  }catch{
   window.prompt('Sao chép nội dung:',$('memo').value);
  }
@@ -205,21 +269,20 @@ $('copyMemo').onclick=async()=>{
 
 function clipboardSupported(){
  return window.isSecureContext &&
- !!navigator.clipboard?.write &&
- typeof ClipboardItem!=='undefined';
+   !!navigator.clipboard?.write &&
+   typeof ClipboardItem !== 'undefined';
 }
 
 function copyPng(blobPromise,success){
  if(!clipboardSupported()){
-  toast('Trình duyệt không hỗ trợ sao chép ảnh tại đây. Hãy mở trang bằng HTTPS trên Chrome hoặc Edge.',true);
+  toast('Trình duyệt không hỗ trợ sao chép ảnh. Hãy mở trang bằng HTTPS trên Chrome hoặc Edge.',true);
   return;
  }
-
  try{
   const item=new ClipboardItem({'image/png':blobPromise});
   navigator.clipboard.write([item])
-   .then(()=>toast(success))
-   .catch(()=>toast('Không thể sao chép ảnh. Hãy cấp quyền clipboard và thử lại.',true));
+    .then(()=>toast(success))
+    .catch(()=>toast('Không thể sao chép ảnh. Hãy cấp quyền clipboard và thử lại.',true));
  }catch(e){
   toast('Không thể sao chép ảnh trên trình duyệt này.',true);
  }
@@ -235,12 +298,12 @@ function canvasPng(canvas){
 }
 
 function ensureQR(){
- if(!qrReady || !$('qr').complete || !$('qr').naturalWidth){
+ if(!qrReady||!$('qr').complete||!$('qr').naturalWidth){
   throw new Error('Mã QR chưa tải thành công');
  }
 }
 
-// CHỤP HÓA ĐƠN ĐÚNG BỐ CỤC MẪU
+// Sao chép ảnh hóa đơn theo bố cục đã chọn.
 
 $('saveInvoice').addEventListener('click',()=>{
  if(typeof html2canvas!=='function'){
@@ -262,11 +325,10 @@ $('saveInvoice').addEventListener('click',()=>{
    area.style.borderRadius='18px';
    area.style.boxSizing='border-box';
 
-   // Nếu chưa có QR thì hiện thông báo thay vì ảnh hỏng
    const img=doc.getElementById('qr');
    const hint=doc.getElementById('qrHint');
 
-   if(!qrReady || !img.complete || !img.naturalWidth){
+   if(!qrReady||!img.complete||!img.naturalWidth){
     img.style.display='none';
     hint.textContent='Chưa đủ thông tin để tạo QR';
     hint.style.color='#bd482a';
@@ -280,7 +342,7 @@ $('saveInvoice').addEventListener('click',()=>{
  );
 });
 
-// CHỤP MÃ QR
+// Sao chép riêng ảnh QR.
 
 $('saveQr').addEventListener('click',()=>{
  try{
@@ -292,7 +354,6 @@ $('saveQr').addEventListener('click',()=>{
  const png=Promise.resolve().then(()=>{
   const img=$('qr');
   const canvas=document.createElement('canvas');
-
   canvas.width=img.naturalWidth;
   canvas.height=img.naturalHeight;
 
